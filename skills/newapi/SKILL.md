@@ -1,5 +1,5 @@
 ---
-name: quota
+name: newapi
 description: 查询 new-api 中转站的剩余/已用额度
 argument-hint: "[refresh | raw | sites | setup]"
 allowed-tools: [Bash, Read]

@@ -1,5 +1,5 @@
 ---
-name: quota-setup
+name: newapi-setup
 description: 一键配置 new-api 额度监控（注册命令 + 写入站点 + 开启 statusLine）
 allowed-tools: [Bash, Read, Write]
 ---
