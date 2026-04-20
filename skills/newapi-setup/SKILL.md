@@ -41,11 +41,8 @@ allowed-tools: [Bash, Read, Write]
 
 依次**逐个**询问用户（不要一次性全问）：
 
-1. **认证方式** — 二选一：
-   - `access_token`（推荐，面板 → 安全设置 → 系统访问令牌）
-   - `api_key`（sk- 开头的 API Key）
-2. **令牌值** — access_token 或 API Key（必填）
-3. **用户 ID** — 仅 access_token 模式需要，默认 `1`（面板个人信息页可见）
+1. **访问令牌 (access_token)** — 必填，在面板 → 安全设置 → 系统访问令牌 中获取
+2. **用户 ID** — 默认 `1`（面板个人信息页可见）
 
 ### 4. 写入配置
 
@@ -56,9 +53,9 @@ allowed-tools: [Bash, Read, Write]
   "sites": {
     "<站点名称>": {
       "base_url": "<用户提供>",
-      "auth_type": "<access_token 或 api_key>",
-      "access_token": "<令牌值>",
-      "user_id": <用户ID或null>,
+      "auth_type": "access_token",
+      "access_token": "<用户提供的令牌>",
+      "user_id": <用户ID>,
       "quota_per_unit": 500000,
       "currency_symbol": "$"
     }

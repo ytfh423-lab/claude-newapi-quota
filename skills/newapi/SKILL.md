@@ -51,8 +51,7 @@ allowed-tools: [Bash, Read, Write, WebFetch]
 curl -s -H "Authorization: Bearer <token>" -H "New-Api-User: <user_id>" "<base_url>/api/user/self"
 ```
 
-- `auth_type` 为 `access_token` 时：加 `Authorization: Bearer <access_token>` 和 `New-Api-User: <user_id>` 两个头
-- `auth_type` 为 `api_key` 时：只加 `Authorization: Bearer <api_key>`
+请求头：`Authorization: Bearer <access_token>` 和 `New-Api-User: <user_id>`
 
 ### 4. 格式化输出
 
