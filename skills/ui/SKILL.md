@@ -86,7 +86,7 @@ Sonnet 4.6 | myproject@main (+12 -3) | 45k/200k (22%) | effort: high | 5h 30% | 
 
 ```json
 "spinnerTipsEnabled": true,
-"spinnerVerbs": {"thinking": "思考中", "analyzing": "分析中", "reasoning": "推理中", "searching": "搜索中", "coding": "编码中", "optimizing": "优化中", "reviewing": "审视中", "designing": "构思中"}
+"spinnerVerbs": {"mode": "replace", "verbs": ["思考中", "分析中", "推理中", "搜索中", "编码中", "优化中", "审视中", "构思中"]}
 ```
 
 如果用户想自定义加载小贴士：
