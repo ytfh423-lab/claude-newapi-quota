@@ -39,13 +39,6 @@ function formatResetTime(epochOrIso) {
   }
 }
 
-function warnIcon(pct) {
-  if (pct >= 90) return '🔴';
-  if (pct >= 70) return '🟠';
-  if (pct >= 50) return '🟡';
-  return '';
-}
-
 // 从 stdin 读取 Claude Code 传入的 session JSON
 function readStdin() {
   return new Promise((resolve) => {
@@ -179,23 +172,15 @@ async function main() {
     return;
   }
 
-  let out = '[Claude]';
+  const bar5h = makeBar(fiveHourPct ?? 0);
+  const barWeek = makeBar(sevenDayPct ?? 0);
+  const warn5h = (fiveHourPct ?? 0) >= 80 ? '⚠️' : '';
+  const warnWeek = (sevenDayPct ?? 0) >= 80 ? '⚠️' : '';
 
-  if (fiveHourPct !== null) {
-    const bar = makeBar(fiveHourPct);
-    const reset = formatResetTime(fiveHourReset);
-    const warn = warnIcon(fiveHourPct);
-    out += ` 5h: ${bar} ${fiveHourPct}%${warn}`;
-    if (reset) out += ` @${reset}`;
-  }
+  // 重置时间取 5h 的
+  const reset = formatResetTime(fiveHourReset);
 
-  if (sevenDayPct !== null) {
-    const bar = makeBar(sevenDayPct);
-    const reset = formatResetTime(sevenDayReset);
-    const warn = warnIcon(sevenDayPct);
-    out += ` | 7d: ${bar} ${sevenDayPct}%${warn}`;
-    if (reset) out += ` @${reset}`;
-  }
+  let out = `[Claude] 5h: ${bar5h} ${fiveHourPct ?? 0}%${warn5h} | 周: ${barWeek} ${sevenDayPct ?? 0}%${warnWeek} | 重置: ${reset || '?'}`;
 
   process.stdout.write(out);
 }
