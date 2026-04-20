@@ -46,8 +46,6 @@ allowed-tools: [Bash, Read, Write]
    - `api_key`（sk- 开头的 API Key）
 2. **令牌值** — access_token 或 API Key（必填）
 3. **用户 ID** — 仅 access_token 模式需要，默认 `1`（面板个人信息页可见）
-4. **额度单位** — 多少 quota = 1 美元，默认 `500000`（大多数站点用默认值即可）
-5. **货币符号** — 默认 `$`
 
 ### 4. 写入配置
 
@@ -61,8 +59,8 @@ allowed-tools: [Bash, Read, Write]
       "auth_type": "<access_token 或 api_key>",
       "access_token": "<令牌值>",
       "user_id": <用户ID或null>,
-      "quota_per_unit": <额度单位>,
-      "currency_symbol": "<货币符号>"
+      "quota_per_unit": 500000,
+      "currency_symbol": "$"
     }
   },
   "active": "<站点名称>",
