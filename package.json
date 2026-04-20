@@ -1,0 +1,39 @@
+{
+  "name": "claude-newapi-quota",
+  "version": "0.1.0",
+  "description": "在 Claude Code CLI 中实时查看 new-api 中转站的剩余/已用额度",
+  "type": "module",
+  "bin": {
+    "cnq": "./bin/cnq.js",
+    "cnq-statusline": "./bin/cnq-statusline.js"
+  },
+  "scripts": {
+    "start": "node bin/cnq.js",
+    "setup": "node bin/cnq.js setup",
+    "quota": "node bin/cnq.js quota",
+    "statusline": "node bin/cnq-statusline.js",
+    "test": "node --test test/formatter.test.js test/api.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    ".claude-plugin/",
+    "bin/",
+    "src/",
+    "skills/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "claude-code",
+    "new-api",
+    "one-api",
+    "quota",
+    "statusline",
+    "cli"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

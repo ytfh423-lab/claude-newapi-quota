@@ -1,0 +1,10 @@
+{
+  "name": "newapi-quota",
+  "description": "在 Claude Code 中实时查看 new-api / one-api 中转站的剩余额度和已用额度，支持 statusLine 常驻显示与 /quota 命令查询",
+  "version": "0.1.0",
+  "author": {
+    "name": "claude-newapi-quota contributors"
+  },
+  "homepage": "https://github.com/ytfh423-lab/claude-newapi-quota",
+  "tags": ["new-api", "one-api", "quota", "billing", "statusline"]
+}
