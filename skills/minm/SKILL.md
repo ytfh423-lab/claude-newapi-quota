@@ -1,5 +1,5 @@
 ---
-name: minimax-setup
+name: minm
 description: 配置 MiniMax Token Plan，设置 API Key 并启用底部状态栏实时显示用量
 allowed-tools: [Bash, Read, Edit, MultiEdit, Write]
 ---

@@ -1,5 +1,5 @@
 ---
-name: claude-setup
+name: cc
 description: 配置 Claude 官方账户底部状态栏，实时显示 5h/7d 用量
 allowed-tools: [Bash, Read, Edit, MultiEdit, Write]
 ---

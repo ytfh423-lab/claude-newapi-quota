@@ -1,5 +1,5 @@
 ---
-name: newapi-setup
+name: new
 description: 配置 new-api 中转站信息（站点地址、认证令牌等）
 allowed-tools: [Bash, Read, Write]
 ---

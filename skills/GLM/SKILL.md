@@ -1,5 +1,5 @@
 ---
-name: glm-setup
+name: GLM
 description: 配置智谱 GLM Coding Plan，设置 API Key 并启用底部状态栏实时显示用量
 allowed-tools: [Bash, Read, Edit, MultiEdit, Write]
 ---
