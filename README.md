@@ -96,6 +96,10 @@ Remove-Item -Recurse ~/.claude-newapi-quota   # new-api 配置文件
 - 状态栏脚本零外部依赖，纯 Node.js 18+ 原生 `fetch`/`https`
 - 配置命令中 AI 只展示 token 末尾 4 位
 
+## 致谢
+
+感谢 [LinuxDo 社区](https://linux.do) 为本项目提供支持。
+
 ## License
 
 MIT
