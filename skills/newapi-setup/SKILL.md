@@ -69,12 +69,36 @@ curl -s -H "Authorization: Bearer <token>" -H "New-Api-User: <user_id>" "<base_u
 如果返回包含 `quota` 字段，告知用户连接成功并展示当前余额。
 如果失败，告知错误原因但**不删除配置**，让用户可以用 `/newapi-setup` 重新修改。
 
-### 5. 完成提示
+### 5. 配置 statusLine（底部实时额度显示）
+
+读取 `~/.claude/settings.json`（Windows 为 `%USERPROFILE%\.claude\settings.json`）。
+
+找到本插件的安装路径。插件文件一般位于：
+```
+~/.claude/plugins/cache/newapi-quota-marketplace/newapi-quota/<version>/bin/cnq-statusline.js
+```
+
+用 Bash 确定确切路径：
+```bash
+ls ~/.claude/plugins/cache/newapi-quota-marketplace/newapi-quota/*/bin/cnq-statusline.js
+```
+
+然后在 `settings.json` 中添加或更新 `statusLine` 字段（**合并，不覆盖**已有配置）：
+```json
+"statusLine": {
+  "type": "command",
+  "command": "node <找到的cnq-statusline.js绝对路径>",
+  "padding": 0
+}
+```
+
+### 6. 完成提示
 
 告知用户：
 - ✅ 配置完成
 - 使用 `/newapi` 随时查询额度
 - 使用 `/newapi-setup` 修改配置或添加新站点
+- **重启 Claude Code** 后底部将实时显示余额
 
 ### 安全须知
 
