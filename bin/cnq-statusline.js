@@ -12,25 +12,8 @@ import { formatStatusLine, quotaToAmount } from '../src/formatter.js';
 // 给脚本整体一个硬上限，防止偶发卡死阻塞状态栏
 const HARD_TIMEOUT_MS = 4000;
 
-async function drainStdin() {
-  // Claude Code 会通过 stdin 发送 session info（JSON）
-  // 我们不依赖它，但要读走避免潜在管道阻塞
-  if (process.stdin.isTTY) return null;
-  try {
-    process.stdin.setEncoding('utf-8');
-    let buf = '';
-    // 设置超时，最多读 200ms
-    const to = setTimeout(() => process.stdin.pause(), 200);
-    for await (const chunk of process.stdin) {
-      buf += chunk;
-      if (buf.length > 64_000) break;
-    }
-    clearTimeout(to);
-    try { return buf ? JSON.parse(buf) : null; } catch { return null; }
-  } catch {
-    return null;
-  }
-}
+// stdin 不做任何处理 —— Claude Code 通过 stdin 发 session info
+// 但我们不依赖它，且在 Windows 上操作 stdin + process.exit 会导致 libuv 断言错误
 
 async function buildLine() {
   const cfg = await loadConfig();
@@ -56,9 +39,6 @@ async function buildLine() {
 }
 
 async function main() {
-  // stdin 尝试读取但不阻塞主逻辑
-  drainStdin().catch(() => null);
-
   const timeout = new Promise((resolve) => setTimeout(
     () => resolve('💰 — (timeout)'),
     HARD_TIMEOUT_MS,
@@ -68,10 +48,9 @@ async function main() {
     buildLine().catch((e) => `💰 — ${(e?.message ?? 'error').slice(0, 40)}`),
     timeout,
   ]);
-  process.stdout.write(line);
+  process.stdout.write(line + '\n', () => {
+    process.exit(0);
+  });
 }
 
-main().finally(() => {
-  // 保险：最多等 HARD_TIMEOUT_MS 后强制退出，且永远 0
-  setTimeout(() => process.exit(0), 50).unref();
-});
+main().catch(() => process.exit(0));
