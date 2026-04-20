@@ -87,21 +87,32 @@ curl -s -H "Authorization: Bearer <token>" -H "New-Api-User: <user_id>" "<base_u
 
 读取 `~/.claude/settings.json`（Windows 为 `%USERPROFILE%\.claude\settings.json`）。
 
-找到本插件的安装路径。插件文件一般位于：
-```
-~/.claude/plugins/cache/newapi-quota-marketplace/newapi-quota/<version>/bin/cnq-statusline.js
+找到本插件安装路径下的 `bin/cnq-statusline.js`。
+
+**Windows 用：**
+```bash
+dir /s /b "%USERPROFILE%\.claude\plugins\cache\newapi-quota-marketplace\newapi-quota\*\bin\cnq-statusline.js"
 ```
 
-用 Bash 确定确切路径：
+**macOS/Linux 用：**
 ```bash
 ls ~/.claude/plugins/cache/newapi-quota-marketplace/newapi-quota/*/bin/cnq-statusline.js
 ```
 
-然后在 `settings.json` 中添加或更新 `statusLine` 字段（**合并，不覆盖**已有配置）：
+拿到绝对路径后，将路径中的反斜杠 `\` 全部替换为正斜杠 `/`，然后在 `settings.json` 中添加或更新 `statusLine` 字段（**合并，不覆盖**已有配置）：
 ```json
 "statusLine": {
   "type": "command",
-  "command": "node <找到的cnq-statusline.js绝对路径>",
+  "command": "node <绝对路径，用正斜杠>",
+  "padding": 0
+}
+```
+
+示例（Windows）：
+```json
+"statusLine": {
+  "type": "command",
+  "command": "node C:/Users/xxx/.claude/plugins/cache/newapi-quota-marketplace/newapi-quota/0.1.0/bin/cnq-statusline.js",
   "padding": 0
 }
 ```
